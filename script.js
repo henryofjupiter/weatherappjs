@@ -10,7 +10,12 @@ async function checkWeather() {
    
 }
 checkWeather().then((data) => {
-        
+    console.log(data);
+        document.querySelector(".city").innerHTML = data.location.name;
+        document.querySelector(".temp").innerHTML = data.current.temp_f + '&degc';
+        document.querySelector(".humidity").innerHTML = data.current.humidity + '%';
+        document.querySelector(".wind").innerHTML = data.current.wind_kph + ' km/h';
+
 }).catch((error) => {
     console.error('error:', error);
 });
