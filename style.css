@@ -38,7 +38,7 @@ body {
     border-radius: 30px;
     flex: 1;
     margin-right: 16px;
-    font-size: 18px;
+    font-size: 25px;
 }
 .search button {
     border: 0;
@@ -81,7 +81,7 @@ body {
     width: 50px;
     margin-right: 10px;
 }
-.humidity, .windy {
+.humidity, .wind {
     font-size: 28px;
     margin-top: -6px;
 }
