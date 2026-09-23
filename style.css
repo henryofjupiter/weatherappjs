@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-body {
+.changer {
     background: #211442;
     /*display: flex;*/
 }
@@ -19,7 +19,8 @@ body {
     max-width: 470px;
     /*max-height: 900px;*/
     background: #130024;
-    background: linear-gradient(10deg, rgba(19, 0, 36, 1) 17%, rgba(28, 28, 176, 1) 55%, rgba(97, 2, 207, 1) 86%);    color: #fff;
+    background: linear-gradient(10deg, rgba(19, 0, 36, 1) 17%, rgba(28, 28, 176, 1) 55%, rgba(97, 2, 207, 1) 86%);    
+    color: #fff;
     margin: 100px auto 0;
     border-radius: 60px;
     padding: 40px 35px;
@@ -29,6 +30,7 @@ body {
     flex-grow: 0;
     
 }
+
 
 .search {
     /*width: 100%;*/
@@ -71,6 +73,9 @@ body {
     width: 30px;
     /*padding-right: px;*/
     /*min-width: 10px;*/
+}
+.weather {
+    display: none;
 }
 .weather-icon {
     width: 170px;
@@ -126,6 +131,6 @@ body {
         margin-top: 15px;
     }
     .card {
-        max-height: 700px;
+        max-height: 750px;
     }
 }
