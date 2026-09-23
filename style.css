@@ -96,6 +96,15 @@ body {
     padding: 0 20px;
     margin-top: 50px;
 }
+.weather-conditions{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+.weather-conditions p{
+
+}
 .col {
     display: flex;
     align-items: center;
