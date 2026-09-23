@@ -7,9 +7,11 @@ const searchBtn = document.querySelector('.search button');
 const dayGradient = (data) => {
     const dayG = document.querySelector('.card');
     const dayGB = document.querySelector('.changer');
+    
     if ((data.current.is_day) === 1) {
         dayG.style.background = 'linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%)';
-        dayGB.style.background = '#013e50';
+        dayGB.style.background = 'linear-gradient(10deg,rgba(21, 123, 125, 1) 48%, rgba(181, 132, 27, 1) 100%)';
+        dayGB.style.background = '#054845';
     }
     else {
         dayG.style.background = 'linear-gradient(10deg, rgba(19, 0, 36, 1) 17%, rgba(28, 28, 176, 1) 55%, rgba(97, 2, 207, 1) 86%)';
@@ -90,13 +92,16 @@ const render = (data) => {
     document.querySelector(".temp").innerHTML = data.current.temp_f + '&deg';
     document.querySelector(".humidity").innerHTML = data.current.humidity + '%';
     document.querySelector(".wind").innerHTML = data.current.wind_kph + ' km/h';
-    if (data.current.condition.text.includes('clear')){
-        document.querySelector(".conditions").innerHTML = data.current.condition.text + 'skies';
+    document.querySelector(".willrain").innerHTML = data.current.chance_of_rain + '% change of\ rain';
+
+    if (data.current.condition.text.includes('Clear') || ((data.current.condition.text.includes('Cloudy')))){
+        document.querySelector(".conditions").innerHTML = data.current.condition.text + ' skies';
     }
     else {
-        document.querySelector(".conditions").innerHTML = data.current.condition.text;
+        // fetch weather conditions
+        document.querySelector('.conditions').innerHTML = data.current.condition.text;
     }
-   
+    
 }
 
 // fetch data from api
