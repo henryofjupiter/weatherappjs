@@ -10,7 +10,6 @@ const dayGradient = (data) => {
     
     if ((data.current.is_day) === 1) {
         dayG.style.background = 'linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%)';
-        dayGB.style.background = 'linear-gradient(10deg,rgba(21, 123, 125, 1) 48%, rgba(181, 132, 27, 1) 100%)';
         dayGB.style.background = '#054845';
     }
     else {

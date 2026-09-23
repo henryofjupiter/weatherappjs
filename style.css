@@ -74,9 +74,9 @@
     /*padding-right: px;*/
     /*min-width: 10px;*/
 }
-/*.weather {*/
-/*    display: none;*/
-/*}*/
+.weather {
+    display: none;
+}
 .weather-icon {
     width: 170px;
     max-height: 140px;
