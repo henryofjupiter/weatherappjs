@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: "Imperial", serif;
@@ -13,13 +13,13 @@
 .card {
     box-sizing: border-box;
     width: 100%;
-    max-height: 670px ;
-    min-height: 600px ;
+    max-height: 670px;
+    min-height: 600px;
     min-width: 300px;
     max-width: 470px;
     /*max-height: 900px;*/
     background: #130024;
-    background: linear-gradient(10deg, rgba(19, 0, 36, 1) 17%, rgba(28, 28, 176, 1) 55%, rgba(97, 2, 207, 1) 86%);    
+    background: linear-gradient(10deg, rgba(19, 0, 36, 1) 17%, rgba(28, 28, 176, 1) 55%, rgba(97, 2, 207, 1) 86%);
     color: #fff;
     margin: 100px auto 0;
     border-radius: 60px;
@@ -28,7 +28,7 @@
     align-items: center;
     flex-shrink: 1;
     flex-grow: 0;
-    
+
 }
 
 
@@ -56,6 +56,7 @@
     font-size: 25px;
     box-shadow: 5px 15px 10px rgba(0, 0, 0, 0.6);
 }
+
 .search button {
     border: 0;
     outline: 0;
@@ -69,14 +70,17 @@
     cursor: pointer;
     box-shadow: 5px 15px 10px rgba(0, 0, 0, 0.6);
 }
+
 .search button img {
     width: 30px;
     /*padding-right: px;*/
     /*min-width: 10px;*/
 }
+
 .weather {
     /*display: none;*/
 }
+
 .weather-icon {
     width: 170px;
     max-height: 140px;
@@ -84,52 +88,67 @@
     /*object-fit: cover;*/
     filter: drop-shadow(20px 20px 10px rgba(0, 0, 0, 0.7));
 }
+
 .weather h1 {
     font-size: 80px;
     font-weight: 500;
     margin-top: 30px;
 }
+
 .weather h2 {
     font-size: 40px;
     font-weight: 400;
     margin-top: -15px;
 }
-.details{
+
+.details {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
     margin-top: 50px;
 }
-.weather-conditions{
+
+.weather-conditions {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 20px;
+    margin-top: 30px;
 }
-.weather-conditions p{
 
+.conditions {
+    margin-left: 10px;
 }
+
+.willrain {
+    margin-left: 60px;
+}
+
 .col {
     display: flex;
     align-items: center;
     text-align: left;
 }
+
 .col img {
     width: 50px;
     margin-right: 10px;
 }
+
 .humidity, .wind {
     font-size: 28px;
     margin-top: -6px;
 }
+
 @media screen and (min-width: 320px) and (max-width: 400px) {
     .search {
         flex-wrap: wrap;
     }
+
     .search button {
         margin-top: 15px;
     }
+
     .card {
         max-height: 750px;
     }
