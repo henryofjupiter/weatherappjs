@@ -6,8 +6,7 @@
 }
 
 .changer {
-    background: #211442;
-    /*display: flex;*/
+    background: #12072f;
 }
 
 .card {
@@ -17,7 +16,6 @@
     min-height: 600px;
     min-width: 300px;
     max-width: 470px;
-    /*max-height: 900px;*/
     background: #130024;
     background: linear-gradient(10deg, rgba(19, 0, 36, 1) 17%, rgba(28, 28, 176, 1) 55%, rgba(97, 2, 207, 1) 86%);
     color: #fff;
@@ -28,9 +26,7 @@
     align-items: center;
     flex-shrink: 1;
     flex-grow: 0;
-
 }
-
 
 .search {
     /*width: 100%;*/
@@ -73,8 +69,6 @@
 
 .search button img {
     width: 30px;
-    /*padding-right: px;*/
-    /*min-width: 10px;*/
 }
 
 .weather {
@@ -85,7 +79,6 @@
     width: 170px;
     max-height: 140px;
     margin-top: 60px;
-    /*object-fit: cover;*/
     filter: drop-shadow(20px 20px 10px rgba(0, 0, 0, 0.7));
 }
 

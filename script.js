@@ -14,7 +14,7 @@ const dayGradient = (data) => {
     }
     else {
         dayG.style.background = 'linear-gradient(10deg, rgba(19, 0, 36, 1) 17%, rgba(28, 28, 176, 1) 55%, rgba(97, 2, 207, 1) 86%)';
-        dayGB.style.background = '#211442';
+        dayGB.style.background = '#12072f';
     }
 }
 
@@ -92,7 +92,8 @@ const render = (data) => {
     document.querySelector(".humidity").innerHTML = data.current.humidity + '%';
     document.querySelector(".wind").innerHTML = data.current.wind_kph + ' km/h';
     document.querySelector(".willrain").innerHTML = data.current.chance_of_rain + '% change of\ rain';
-
+    
+    //output weather condition
     if (data.current.condition.text.includes('Clear') || ((data.current.condition.text.includes('Cloudy')))){
         document.querySelector(".conditions").innerHTML = data.current.condition.text + ' skies';
     }
