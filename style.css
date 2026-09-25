@@ -20,7 +20,7 @@
     background: #130024;
     background: linear-gradient(10deg, rgba(19, 0, 36, 1) 17%, rgba(28, 28, 176, 1) 55%, rgba(97, 2, 207, 1) 86%);
     color: #fff;
-    margin: 100px auto 0;
+    margin: 70px auto 0;
     border-radius: 60px;
     padding: 40px 35px;
     text-align: center;
@@ -118,14 +118,13 @@
 .weather-icon {
     width: 170px;
     max-height: 150px;
-    margin-top: 80px;
+    margin-top: 30px;
     filter: drop-shadow(20px 20px 10px rgba(0, 0, 0, 0.7));
 }
 
 .temp {
     font-size: 80px;
     font-weight: 500;
-    margin-top: 30px;
 }
 
 .city {
@@ -146,17 +145,19 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 60px;
+    margin-top: 40px;
     margin-bottom: -25px
 }
 
 .conditions {
     margin-left: 10px;
+    font-size: 17px;
 
 }
 
 .willrain {
     margin-left: 60px;
+    font-size: 17px;
 }
 
 .col {
@@ -186,5 +187,7 @@
 
     .card {
         max-height: 750px;
+        margin: 20px auto 0;
+
     }
 }
