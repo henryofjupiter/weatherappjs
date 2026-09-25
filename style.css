@@ -28,6 +28,7 @@
     flex-shrink: 1;
     flex-grow: 0;
 }
+
 .new {
     display: flex;
     /*z-index: ;*/
@@ -35,8 +36,9 @@
     align-items: center;
     margin-top: -20px;
     margin-bottom: -65px
-    
+
 }
+
 .labelcard {
     margin-top: -40px;
     rotate: 55deg;
@@ -44,6 +46,7 @@
     height: 1px;
     cursor: pointer;
 }
+
 .new p {
     color: white;
     border-radius: 60px;
@@ -100,23 +103,32 @@
 }
 
 .weather {
-    /*display: none;*/
+    display: none;
+}
+
+.homepage img {
+    margin-top: -20px;
+    margin-left: -18px;
+    rotate: -15deg;
+}
+
+#homepage2 img, h1, h2 {
 }
 
 .weather-icon {
     width: 170px;
-    max-height: 140px;
-    margin-top: 60px;
+    max-height: 150px;
+    margin-top: 80px;
     filter: drop-shadow(20px 20px 10px rgba(0, 0, 0, 0.7));
 }
 
-.weather h1 {
+.temp {
     font-size: 80px;
     font-weight: 500;
     margin-top: 30px;
 }
 
-.weather h2 {
+.city {
     font-size: 40px;
     font-weight: 400;
     margin-top: -15px;
@@ -134,11 +146,13 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 30px;
+    margin-top: 60px;
+    margin-bottom: -25px
 }
 
 .conditions {
     margin-left: 10px;
+
 }
 
 .willrain {
