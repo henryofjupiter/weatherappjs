@@ -11,6 +11,7 @@
 
 .card {
     box-sizing: border-box;
+    /*position: relative;*/
     width: 100%;
     max-height: 670px;
     min-height: 600px;
@@ -26,6 +27,33 @@
     align-items: center;
     flex-shrink: 1;
     flex-grow: 0;
+}
+.new {
+    display: flex;
+    /*z-index: ;*/
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px;
+    margin-bottom: -65px
+    
+}
+.labelcard {
+    margin-top: -40px;
+    rotate: 55deg;
+    width: 2px;
+    height: 1px;
+    cursor: pointer;
+}
+.new p {
+    color: white;
+    border-radius: 60px;
+    font-size: 15px;
+    font-weight: bolder;
+    rotate: 90deg;
+    margin: 50px 0 0 -30px;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .search {
