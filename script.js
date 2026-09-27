@@ -121,12 +121,9 @@ async function checkWeather(country) {
     dayGradient(data);
 }
 
-
-
 searchBtn.addEventListener('click', () => {
     const userInput = input.value.trim();
-    checkWeather(userInput).then(r => true);
-
+    checkWeather(userInput).then(() => true);
 });
 
 
