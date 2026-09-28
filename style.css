@@ -11,7 +11,6 @@
 
 .card {
     box-sizing: border-box;
-    /*position: relative;*/
     width: 100%;
     max-height: 670px;
     min-height: 600px;
@@ -60,13 +59,8 @@
 }
 
 .search {
-    /*width: 100%;*/
     display: flex;
-    /*flex: 1 1 200px;*/
-    /*align-items: flex-start;*/
     justify-content: space-between;
-    /*min-width:10px;*/
-    /*flex-wrap: wrap;*/
     flex-shrink: 1;
 }
 
@@ -90,10 +84,7 @@
     background: aliceblue;
     border-radius: 50%;
     padding: 15px 15px 45px 16px;
-    /*width: 60px;*/
     height: 50px;
-    /*min-width: 300px;*/
-    /*min-height: 10px;*/
     cursor: pointer;
     box-shadow: 5px 15px 10px rgba(0, 0, 0, 0.6);
 }
@@ -110,6 +101,15 @@
     margin-top: -20px;
     margin-left: -18px;
     rotate: -15deg;
+}
+.homepage h1 {
+    background: #371785;
+    box-shadow: inset 0 0 20px 5px rgba(0, 0, 0, 0.7);
+    color: #b4b4c9;
+    border-radius: 30px;
+    margin: 0 65px 0 65px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 #homepage2 img, h1, h2 {
@@ -188,6 +188,5 @@
     .card {
         max-height: 750px;
         margin: 20px auto 0;
-
     }
 }
