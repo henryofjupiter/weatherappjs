@@ -16,6 +16,9 @@
 # AWS User-specific
 .idea/**/aws.xml
 
+#node
+node_modules/
+
 # Generated files
 .idea/**/contentModel.xml
 

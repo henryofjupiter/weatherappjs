@@ -15,6 +15,12 @@
   "type": "commonjs",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node script.js"
+  },
+  "keywords": [],
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
   }
 }
