@@ -17,15 +17,13 @@ app.get('/', (req, res, next) => {
 });
 
 app.get('/weather', (req, res) => {
+
     if (!req.query.address) {
         return res.send('address is needed');
     }
-    weatherData(req.query.address, (error, result) => {
-        if (error) {
-            return res.send(error);
-        }
-        res.send(result);
-    });
+    res.json(weatherData(req.query.address));
+    console.log('at /weather block');
+    // res.render('index.ejs')
 });
 
 app.use((req, res, next) => {

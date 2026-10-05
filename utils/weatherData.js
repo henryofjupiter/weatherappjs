@@ -1,4 +1,6 @@
-const request = require('request');
+const axios = require("axios");
+const express = require('express');
+
 // const userInput = require('../app');
 
 // const {request} = require("express");
@@ -7,21 +9,27 @@ const weatherObj = {
     apiUrl: process.env.API_URL
 }
 
-const weatherData = (address, callback) => {
+//requires user input
+async function weatherData(address) {
     const url = (weatherObj.apiUrl +
         encodeURIComponent(address) +
         `&key=${weatherObj.apiKey}`);
 
-    request({url, json: true}, (error, data) => {
-        if (error) {
-            callback(true, 'unable to fetch data ' + error);
-        }
-        callback(false, data?.body);
-    });
-};
+    try {
+        //fetch data from new constructed url
+        const response = await axios.get(url);
 
+        //return data
+        const weather = response.data;
+        console.log(weather);
+        console.log('at async function block')
+        return weather;
 
-//weatherData(userInput).then(() => true);
+    } catch (error) {
+        console.error('fetch operation failed: ', error);
+        throw error;
+    }
+}
 
 module.exports = weatherData;
 

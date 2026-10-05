@@ -2,7 +2,7 @@ let weatherApi = '/weather';
 const userInput = document.querySelector('.userInput');
 const searchBtn = document.querySelector('.btn');
 const homepage = document.querySelector('.weather');
-
+console.log('in dom');
 
 //checks if day--> then change gradients of card & background
 const dayGradient = (data) => {
@@ -105,32 +105,32 @@ const render = (data) => {
 
 
 const showWeather = (city) => {
-    const homepage2 = document.getElementById('homepage2');
-
-    getWeatherData(city, (result) => {
-        console.log(result);
-        if (result.location.name) {
-            homepage2.style.display = 'none';
-            homepage.classList.remove('weather');
-        }
-        render(result);
-        skyCondition(result);
-        dayGradient(result);
-    })
+    console.log('in show weather block');
+    getWeatherData(city);
+    // const homepage2 = document.getElementById('homepage2');
+    //
+    // getWeatherData(city) => {
+    //     console.log(result);
+    //     if (result.location.name) {
+    //         homepage2.style.display = 'none';
+    //         homepage.classList.remove('weather');
+    //     }
+    //     render(result);
+    //     skyCondition(result);
+    //     dayGradient(result);
+    // })
 }
 
-const getWeatherData = (city, callback) => {
+const getWeatherData = (city) => {
     const location = weatherApi + '?address=' + city;
-
-    fetch(location).then((response) => {
-        response.json().then((response) => {
-            callback(response);
-        })
-    })
+    console.log(location);
+    fetch(location).then(response => response.json())
+        .then(data => console.log('data' + data));
 }
 
 searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    console.log('button execute ' + userInput.value);
     showWeather(userInput.value);
 
 });
