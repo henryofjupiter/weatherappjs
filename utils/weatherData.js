@@ -8,7 +8,6 @@ const weatherObj = {
 }
 
 const weatherData = (address, callback) => {
-    console.log('h3r3');
     const url = (weatherObj.apiUrl +
         encodeURIComponent(address) +
         `&key=${weatherObj.apiKey}`);
