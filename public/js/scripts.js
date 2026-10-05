@@ -1,8 +1,8 @@
-const apiKey = '3db8f23e418543c297c215245262009';
-const apiUrl = 'https://api.weatherapi.com/v1/current.json';
-const input = document.querySelector('.search input');
-const searchBtn = document.querySelector('.search button');
+let weatherApi = '/weather';
+const userInput = document.querySelector('.userInput');
+const searchBtn = document.querySelector('.btn');
 const homepage = document.querySelector('.weather');
+
 
 //checks if day--> then change gradients of card & background
 const dayGradient = (data) => {
@@ -18,7 +18,7 @@ const dayGradient = (data) => {
     }
 }
 
-
+// changes weather icon based on weather conditions
 const skyCondition = (data) => {
     const weatherIcon = document.querySelector('.weather-icon');
 
@@ -84,9 +84,9 @@ const skyCondition = (data) => {
     }
 }
 
-//render 
+
+// render
 const render = (data) => {
-    console.log(data);
     document.querySelector(".city").innerHTML = data.location.name;
     document.querySelector(".temp").innerHTML = data.current.temp_f + '&deg';
     document.querySelector(".humidity").innerHTML = data.current.humidity + '%';
@@ -103,27 +103,34 @@ const render = (data) => {
 
 }
 
-// fetch data from api
-async function checkWeather(country) {
-    const response = await fetch(apiUrl + '?&q=' + `${country}` + `&key=${apiKey}`);
-    const data = await response.json();
 
+const showWeather = (city) => {
     const homepage2 = document.getElementById('homepage2');
 
-    if (data.location.name) {
-        console.log('at block');
-        homepage2.style.display = 'none';
-        homepage.classList.remove('weather');
-    }
-    //renders data to html-> displays sky conditions
-    render(data);
-    skyCondition(data);
-    dayGradient(data);
+    getWeatherData(city, (result) => {
+        console.log(result);
+        if (result.location.name) {
+            homepage2.style.display = 'none';
+            homepage.classList.remove('weather');
+        }
+        render(result);
+        skyCondition(result);
+        dayGradient(result);
+    })
 }
 
-searchBtn.addEventListener('click', () => {
-    const userInput = input.value.trim();
-    checkWeather(userInput).then(() => true);
+const getWeatherData = (city, callback) => {
+    const location = weatherApi + '?address=' + city;
+
+    fetch(location).then((response) => {
+        response.json().then((response) => {
+            callback(response);
+        })
+    })
+}
+
+searchBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    showWeather(userInput.value);
+
 });
-
-

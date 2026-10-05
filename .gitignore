@@ -18,6 +18,7 @@
 
 #node
 node_modules/
+nodemon.json
 
 # Generated files
 .idea/**/contentModel.xml
