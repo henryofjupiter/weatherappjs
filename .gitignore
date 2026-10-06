@@ -19,6 +19,7 @@
 #node
 node_modules/
 nodemon.json
+vercel.json
 
 # Generated files
 .idea/**/contentModel.xml

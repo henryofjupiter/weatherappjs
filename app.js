@@ -37,3 +37,6 @@ app.use((req, res, next) => {
 app.listen(port, () => {
     console.log('server is listening on port ' + port);
 })
+
+//export for Vercel
+module.exports = app;
