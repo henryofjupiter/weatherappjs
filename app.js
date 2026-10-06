@@ -16,14 +16,17 @@ app.get('/', (req, res, next) => {
     res.render('index.ejs', {title: 'Weather App'});
 });
 
-app.get('/weather', (req, res) => {
-
+app.get('/weather', async (req, res) => {
     if (!req.query.address) {
-        return res.send('address is needed');
+        return res.json({error: 'address is needed'});
     }
-    res.json(weatherData(req.query.address));
-    console.log('at /weather block');
-    // res.render('index.ejs')
+    try {
+        const result = await weatherData(req.query.address);
+        res.json(result);
+        console.log('Weather data sent to client');
+    } catch (error) {
+        res.status(500).json({error: 'Unable to fetch weather data'});
+    }
 });
 
 app.use((req, res, next) => {

@@ -106,31 +106,40 @@ const render = (data) => {
 
 const showWeather = (city) => {
     console.log('in show weather block');
-    getWeatherData(city);
-    // const homepage2 = document.getElementById('homepage2');
-    //
-    // getWeatherData(city) => {
-    //     console.log(result);
-    //     if (result.location.name) {
-    //         homepage2.style.display = 'none';
-    //         homepage.classList.remove('weather');
-    //     }
-    //     render(result);
-    //     skyCondition(result);
-    //     dayGradient(result);
-    // })
+    const homepage2 = document.getElementById('homepage2');
+    
+    getWeatherData(city, (data) => {
+        console.log('Weather data received:', data);
+
+        if (data.location && data.location.name) {
+            homepage2.style.display = 'none';
+            homepage.classList.remove('weather');
+        }
+
+        render(data);
+        skyCondition(data);
+        dayGradient(data);
+    });
 }
 
-const getWeatherData = (city) => {
+const getWeatherData = (city, callback) => {
     const location = weatherApi + '?address=' + city;
-    console.log(location);
-    fetch(location).then(response => response.json())
-        .then(data => console.log('data' + data));
+    fetch(location)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();  // Parse JSON from response
+        })
+        .then((data) => {
+            callback(data);  // Pass the JSON data to callback
+        })
+        .catch((error) => {
+            console.error('Error fetching weather:', error);
+        });
 }
 
 searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('button execute ' + userInput.value);
     showWeather(userInput.value);
-
 });
