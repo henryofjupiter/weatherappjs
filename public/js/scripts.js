@@ -2,7 +2,37 @@ let weatherApi = '/weather';
 const userInput = document.querySelector('.userInput');
 const searchBtn = document.querySelector('.btn');
 const homepage = document.querySelector('.weather');
-console.log('in dom');
+
+//geo data
+// userGeoData = {
+//     ip: 'userIp',
+//     country: 'userCountry',
+//     city: 'userCity'
+// }
+const userCity = userGeoData.city;
+const userCountry = userGeoData.country;
+
+
+// Using Option B (recommended)
+console.log('User Geolocation Data:', userGeoData);
+console.log('IP:', userGeoData.ip);
+console.log('Country:', userGeoData.country);
+console.log('City:', userGeoData.city);
+
+// Example: Display user location on the page
+const displayUserLocation = () => {
+    const locationText = `You are visiting from ${userGeoData.city}, ${userGeoData.country}`;
+    console.log(locationText);
+
+    // Display on page (if you have a location element)
+    const locationElement = document.querySelector('.user-location');
+    if (locationElement) {
+        locationElement.innerHTML = locationText;
+    }
+};
+
+displayUserLocation();
+
 
 //checks if day--> then change gradients of card & background
 const dayGradient = (data) => {
@@ -107,11 +137,11 @@ const render = (data) => {
 const showWeather = (city) => {
     console.log('in show weather block');
     const homepage2 = document.getElementById('homepage2');
-    
+
     getWeatherData(city, (data) => {
         console.log('Weather data received:', data);
 
-        if (data.location && data.location.name) {
+        if ((data.location && data.location.name) || (userCountry && userCity)) {
             homepage2.style.display = 'none';
             homepage.classList.remove('weather');
         }
@@ -138,6 +168,13 @@ const getWeatherData = (city, callback) => {
             console.error('Error fetching weather:', error);
         });
 }
+
+// display user location on load
+window.addEventListener('load', () => {
+    if (userGeoData.city !== 'Unknown') {
+        showWeather(userGeoData.city);
+    }
+});
 
 searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
