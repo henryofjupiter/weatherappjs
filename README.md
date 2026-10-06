@@ -97,3 +97,9 @@ npm start
 ```text
 http://localhost:3500
 ```
+
+# Usage
+
+1. Enter a city name in the search field.
+2. Submit the form.
+3. The app fetches the current weather and displays it in the UI.
