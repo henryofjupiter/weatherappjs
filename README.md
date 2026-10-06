@@ -1,5 +1,6 @@
 # WeatherAppJS
 
+[VIEW APP HERE](https://weatherappjs-delta.vercel.app/)\
 A lightweight weather web application built with Node.js, Express, EJS, and vanilla JavaScript. It allows users to
 search for a city and display the current weather conditions, including temperature, humidity, wind speed, rain chance,
 and a dynamic weather icon.
@@ -76,7 +77,7 @@ the request.
 
 # Running the App
 
-start the app locally:
+- start the app locally:
 
 ```bash
 npm start
