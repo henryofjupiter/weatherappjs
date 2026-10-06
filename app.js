@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3500;
 const weatherData = require('./utils/weatherData');
-app.set('views engine', 'ejs');
+app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 
@@ -33,10 +33,12 @@ app.use((req, res, next) => {
     res.status(404).send('<h1>page not found</h1>');
 })
 
-
-app.listen(port, () => {
-    console.log('server is listening on port ' + port);
-})
+// Only listen locally
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log('server is listening on port ' + port);
+    })
+}
 
 //export for Vercel
 module.exports = app;

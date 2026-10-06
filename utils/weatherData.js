@@ -1,9 +1,6 @@
 const axios = require("axios");
-const express = require('express');
+require('dotenv').config();
 
-// const userInput = require('../app');
-
-// const {request} = require("express");
 const weatherObj = {
     apiKey: process.env.API_KEY,
     apiUrl: process.env.API_URL
@@ -14,6 +11,7 @@ async function weatherData(address) {
     const url = (weatherObj.apiUrl +
         encodeURIComponent(address) +
         `&key=${weatherObj.apiKey}`);
+    console.log(url);
 
     try {
         //fetch data from new constructed url
