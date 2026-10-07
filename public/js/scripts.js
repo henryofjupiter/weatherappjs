@@ -171,7 +171,16 @@ const getWeatherData = (city, callback) => {
 
 // display user location on load
 window.addEventListener('load', () => {
-    if (userGeoData.city !== 'Unknown') {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const {latitude, longitude} = position.coords;
+            fetch(`/weather?lat=${latitude}&lng=${longitude}`)
+                .then(res => res.json())
+                .then(data => console.log(data));
+        }, (error) => {
+            console.log('Geolocation not available, using IP fallback');
+        })
+    } else if (userGeoData.city !== 'Unknown') {
         showWeather(userGeoData.city);
     }
 });
