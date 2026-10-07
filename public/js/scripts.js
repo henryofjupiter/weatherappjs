@@ -193,6 +193,41 @@ const getWeatherData = (city, callback) => {
                 console.error('Error fetching weather:', error);
             });
     }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const {latitude, longitude} = position.coords;
+
+            console.log(latitude + ' ' + longitude);
+            fetch(`/weather?address=${latitude},${longitude}`)
+                .then((res) => {
+                if (!res.ok){
+                    throw new Error('no geo location');
+                } return res.json();
+                })
+                .then((data) => {
+                    callback(data);
+                })
+                .catch((error) => {
+                    console.error('error fetching geo weather');
+                });
+
+            })
+    } else {
+        fetch(location)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();  // Parse JSON from response
+            })
+            .then((data) => {
+                callback(data);  // Pass the JSON data to callback
+            })
+            .catch((error) => {
+                console.error('Error fetching weather:', error);
+            });
+    }
 }
 
 // use GPS to fetch user location on load
