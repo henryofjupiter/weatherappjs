@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const geoip = require('geoip-lite');
+const axios = require('axios');
 const app = express();
 const port = process.env.PORT || 3500;
 const weatherData = require('./utils/weatherData');
