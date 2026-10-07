@@ -153,39 +153,50 @@ const showWeather = (city) => {
 
 const getWeatherData = (city, callback) => {
     const location = weatherApi + '?address=' + city;
-    fetch(location)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();  // Parse JSON from response
-        })
-        .then((data) => {
-            callback(data);  // Pass the JSON data to callback
-        })
-        .catch((error) => {
-            console.error('Error fetching weather:', error);
-        });
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const {latitude, longitude} = position.coords;
+
+            console.log(latitude + ' ' + longitude);
+            fetch(`/weather?address=${latitude},${longitude}`)
+                .then((res) => {
+                if (!res.ok){
+                    throw new Error('no geo location');
+                } return res.json();
+                })
+                .then((data) => {
+                    callback(data);
+                })
+                .catch((error) => {
+                    console.error('error fetching geo weather');
+                });
+
+            })
+    } else {
+        fetch(location)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();  // Parse JSON from response
+            })
+            .then((data) => {
+                callback(data);  // Pass the JSON data to callback
+            })
+            .catch((error) => {
+                console.error('Error fetching weather:', error);
+            });
+    }
 }
 
 // display user location on load
 window.addEventListener('load', () => {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const {latitude, longitude} = position.coords;
-            console.log(latitude + ' ' + longitude);
-            fetch(`/weather?address=${latitude},${longitude}`)
-                .then(res => res.json())
-                .then(data => showWeather(data));
-
-
-        }, (error) => {
-            console.log('Geolocation not available, using IP fallback');
-        })
-    } else if (userGeoData.city !== 'Unknown') {
-        showWeather(userGeoData.city);
+    if(navigator.geolocation) {
+        showWeather();
     }
-});
+    showWeather(userGeoData.city);
+})
 
 searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
