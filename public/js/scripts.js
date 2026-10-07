@@ -9,32 +9,11 @@ const homepage = document.querySelector('.weather');
 //     country: 'userCountry',
 //     city: 'userCity'
 // }
+
 const userCity = userGeoData.city;
 const userCountry = userGeoData.country;
 
-
-// Using Option B (recommended)
-console.log('User Geolocation Data:', userGeoData);
-console.log('IP:', userGeoData.ip);
-console.log('Country:', userGeoData.country);
-console.log('City:', userGeoData.city);
-
-// Example: Display user location on the page
-const displayUserLocation = () => {
-    const locationText = `You are visiting from ${userGeoData.city}, ${userGeoData.country}`;
-    console.log(locationText);
-
-    // Display on page (if you have a location element)
-    const locationElement = document.querySelector('.user-location');
-    if (locationElement) {
-        locationElement.innerHTML = locationText;
-    }
-};
-
-displayUserLocation();
-
-
-//checks if day--> then change gradients of card & background
+// checks if day--> then change gradients of card & background
 const dayGradient = (data) => {
     const dayG = document.querySelector('.card');
     const dayGB = document.querySelector('.changer');
@@ -123,7 +102,7 @@ const render = (data) => {
     document.querySelector(".wind").innerHTML = data.current.wind_kph + ' km/h';
     document.querySelector(".willrain").innerHTML = data.current.chance_of_rain + '% change of rain';
 
-    //output weather condition
+    // output weather conditions
     if (data.current.condition.text.includes('Clear') || ((data.current.condition.text.includes('Cloudy')))) {
         document.querySelector(".conditions").innerHTML = data.current.condition.text + ' skies';
     } else {
@@ -138,7 +117,7 @@ const showWeather = (city) => {
     const homepage2 = document.getElementById('homepage2');
 
     getWeatherData(city, (data) => {
-        console.log('Weather data received:', data);
+        //console.log('Weather data received:', data);
 
         if ((data.location && data.location.name) || (userCountry && userCity)) {
             homepage2.style.display = 'none';
@@ -154,16 +133,16 @@ const showWeather = (city) => {
 const getWeatherData = (city, callback) => {
     const location = weatherApi + '?address=' + city;
 
-    if (navigator.geolocation) {
+    if ((navigator.geolocation) && (userInput.value === '')) {
         navigator.geolocation.getCurrentPosition((position) => {
             const {latitude, longitude} = position.coords;
 
-            console.log(latitude + ' ' + longitude);
             fetch(`/weather?address=${latitude},${longitude}`)
                 .then((res) => {
-                if (!res.ok){
-                    throw new Error('no geo location');
-                } return res.json();
+                    if (!res.ok) {
+                        throw new Error('no geo location');
+                    }
+                    return res.json();
                 })
                 .then((data) => {
                     callback(data);
@@ -172,7 +151,7 @@ const getWeatherData = (city, callback) => {
                     console.error('error fetching geo weather');
                 });
 
-            })
+        })
     } else {
         fetch(location)
             .then((response) => {
@@ -192,10 +171,11 @@ const getWeatherData = (city, callback) => {
 
 // display user location on load
 window.addEventListener('load', () => {
-    if(navigator.geolocation) {
+    if (navigator.geolocation) {
         showWeather();
+    } else {
+        showWeather(userGeoData.city);
     }
-    showWeather(userGeoData.city);
 })
 
 searchBtn.addEventListener('click', (e) => {
