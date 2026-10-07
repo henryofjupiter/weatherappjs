@@ -1,12 +1,15 @@
 # WeatherAppJS
 
 [VIEW APP HERE](https://weatherappjs-delta.vercel.app/)\
-A lightweight weather web application built with Node.js, Express, EJS, and vanilla JavaScript. It allows users to
-search for a city and display the current weather conditions, including temperature, humidity, wind speed, rain chance,
+A lightweight weather web application built with Node.js, Express, EJS, and vanilla JavaScript.\
+It allows users to search for a city and display the current weather conditions, including temperature, humidity, wind
+speed, rain chance,
 and a dynamic weather icon.
 
 ## Features
 
+- Uses GPS to display weather
+- defaults to using IP address if no GPS
 - Search for weather by city name
 - Displays current temperature, humidity, and wind speed
 - Shows rain probability and current weather description
@@ -46,7 +49,7 @@ weatherappjs/
 
 Before running the app, make sure you have the following:
 
-- API KEY from `https://www.weatherapi.com/`
+- get API KEY from `https://www.weatherapi.com/`
 - Node.js (v18+ recommended)
 - npm
 
