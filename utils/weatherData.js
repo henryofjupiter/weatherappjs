@@ -11,7 +11,6 @@ async function weatherData(address) {
     const url = (weatherObj.apiUrl +
         encodeURIComponent(address) +
         `&key=${weatherObj.apiKey}`);
-    console.log(url);
 
     try {
         //fetch data from new constructed url
@@ -20,7 +19,7 @@ async function weatherData(address) {
         //return data
         const weather = response.data;
         console.log(weather);
-        console.log('at async function block')
+        console.log('Weather data sent to client');
         return weather;
 
     } catch (error) {
