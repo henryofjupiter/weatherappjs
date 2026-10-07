@@ -13,7 +13,7 @@ app.set('views', 'views');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//renders homepage
+//renders homepage fetches GPS local from client on window load
 app.get('/', (req, res, next) => {
 
     //fetching lat and long with GPS
@@ -65,8 +65,6 @@ function fallbackToIp(req, res) {
     const geo = geoip.lookup(clientIp);
 
     if (geo) {
-        console.log(`User from ${geo.country} (${geo.city}) - IP: ${clientIp}`);
-
         res.render('index.ejs', {
             title: 'Weather App',
             userIp: clientIp,
@@ -91,7 +89,6 @@ app.get('/weather', async (req, res) => {
     try {
         const result = await weatherData(req.query.address);
         res.json(result);
-        console.log('Weather data sent to client');
     } catch (error) {
         res.status(500).json({error: 'Unable to fetch weather data'});
     }
