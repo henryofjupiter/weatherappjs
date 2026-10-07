@@ -15,6 +15,46 @@ app.use(express.static(path.join(__dirname, 'public')));
 //renders homepage
 app.get('/', (req, res, next) => {
 
+    //fetching lat and long with GPS
+    const lat = req.query.lat;
+    const lng = req.query.lng;
+
+    // If GPS coordinates are available, use reverse geocoding
+    if (lat && lng) {
+        reverseGeocode(lat, lng)
+            .then(location => {
+                res.render('index.ejs', {
+                    title: 'Weather App',
+                    userCity: location.city,
+                    userCountry: location.country,
+                    lat: lat,
+                    lng: lng
+                });
+            })
+            .catch(() => fallbackToIp(req, res)); // Fallback if reverse geocoding fails
+    } else {
+        // Fallback to IP-based geolocation
+        fallbackToIp(req, res);
+    }
+});
+
+// Reverse geocoding function using a free API like Nominatim
+async function reverseGeocode(lat, lng) {
+    try {
+        const response = await axios.get(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
+        );
+        const data = response.data.address;
+        return {
+            city: data.city || data.town || data.county || 'Unknown',
+            country: data.country || 'Unknown'
+        };
+    } catch (error) {
+        throw error;
+    }
+}
+
+function fallbackToIp(req, res) {
     let clientIp = req.headers['x-forwarded-for']?.split(',')[0].trim()
         || req.socket.remoteAddress;
 
@@ -41,7 +81,7 @@ app.get('/', (req, res, next) => {
             userCity: 'Unknown'
         });
     }
-});
+}
 
 app.get('/weather', async (req, res) => {
     if (!req.query.address) {
