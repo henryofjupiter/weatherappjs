@@ -176,7 +176,8 @@ window.addEventListener('load', () => {
             const {latitude, longitude} = position.coords;
             fetch(`/weather?lat=${latitude}&lng=${longitude}`)
                 .then(res => res.json())
-                .then(data => console.log(data));
+                .then(data => showWeather(data));
+
         }, (error) => {
             console.log('Geolocation not available, using IP fallback');
         })
