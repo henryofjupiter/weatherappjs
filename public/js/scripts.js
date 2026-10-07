@@ -135,7 +135,6 @@ const render = (data) => {
 
 
 const showWeather = (city) => {
-    console.log('in show weather block');
     const homepage2 = document.getElementById('homepage2');
 
     getWeatherData(city, (data) => {
@@ -174,9 +173,10 @@ window.addEventListener('load', () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             const {latitude, longitude} = position.coords;
-            fetch(`/weather?lat=${latitude}&lng=${longitude}`)
+            fetch(`/weather?address=${latitude},${longitude}`)
                 .then(res => res.json())
                 .then(data => showWeather(data));
+
 
         }, (error) => {
             console.log('Geolocation not available, using IP fallback');
