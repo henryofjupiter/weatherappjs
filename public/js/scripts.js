@@ -173,6 +173,7 @@ window.addEventListener('load', () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             const {latitude, longitude} = position.coords;
+            console.log(latitude + ' ' + longitude);
             fetch(`/weather?address=${latitude},${longitude}`)
                 .then(res => res.json())
                 .then(data => showWeather(data));
