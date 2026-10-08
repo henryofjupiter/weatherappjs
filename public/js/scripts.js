@@ -3,13 +3,6 @@ const userInput = document.querySelector('.userInput');
 const searchBtn = document.querySelector('.btn');
 const homepage = document.querySelector('.weather');
 
-//geo data
-// userGeoData = {
-//     ip: 'userIp',
-//     country: 'userCountry',
-//     city: 'userCity'
-// }
-
 const userCity = userGeoData.city;
 const userCountry = userGeoData.country;
 
@@ -169,7 +162,7 @@ const getWeatherData = (city, callback) => {
     }
 }
 
-// display user location on load
+// use GPS to fetch user location on load
 window.addEventListener('load', () => {
     if (navigator.geolocation) {
         showWeather();
