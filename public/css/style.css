@@ -59,9 +59,8 @@
 }
 
 .search {
-    display: flex;
-    justify-content: space-between;
-    flex-shrink: 1;
+    /*display: flex;*/
+    /*justify-content: space-around;*/
 }
 
 .search input {
@@ -89,8 +88,10 @@
     box-shadow: 5px 15px 10px rgba(0, 0, 0, 0.6);
 }
 
-.search button img {
+.search form button img {
     width: 30px;
+    margin-top: -2px;
+    padding-top: 1px;
 }
 
 .weather {
@@ -152,13 +153,13 @@
 
 .conditions {
     margin-left: 10px;
-    font-size: 17px;
+    font-size: 20px;
 
 }
 
 .willrain {
     margin-left: 60px;
-    font-size: 17px;
+    font-size: 20px;
 }
 
 .col {
@@ -177,13 +178,17 @@
     margin-top: -6px;
 }
 
-@media screen and (min-width: 320px) and (max-width: 400px) {
+@media screen and (min-width: 320px) and (max-width: 425px) {
     .search {
-        flex-wrap: wrap;
+        /*flex-wrap: wrap;*/
     }
 
     .search button {
+        display: flex;
+        flex-wrap: wrap;
         margin-top: 15px;
+        margin-left: 35px;
+        justify-content: flex-start;
     }
 
     .card {
