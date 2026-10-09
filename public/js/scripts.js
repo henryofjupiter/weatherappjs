@@ -1,6 +1,6 @@
 let weatherApi = '/weather';
 const userInput = document.querySelector('.userInput');
-const searchBtn = document.querySelector('.btn');
+const searchBtn = document.querySelector('.search-btn');
 const homepage = document.querySelector('.weather');
 
 const userCity = userGeoData.city;
@@ -151,10 +151,10 @@ const getWeatherData = (city, callback) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.json();  // Parse JSON from response
+                return response.json();
             })
             .then((data) => {
-                callback(data);  // Pass the JSON data to callback
+                callback(data);
             })
             .catch((error) => {
                 console.error('Error fetching weather:', error);
