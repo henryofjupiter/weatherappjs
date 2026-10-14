@@ -126,6 +126,7 @@ const showWeather = (city) => {
 const getWeatherData = (city, callback) => {
     const location = weatherApi + '?address=' + city;
 
+
     if ((navigator.geolocation) && (userInput.value === '')) {
         navigator.geolocation.getCurrentPosition((position) => {
             const {latitude, longitude} = position.coords;
@@ -141,11 +142,28 @@ const getWeatherData = (city, callback) => {
                     callback(data);
                 })
                 .catch((error) => {
-                    console.error('error fetching geo weather');
+                    console.error('error fetching gps weather');
                 });
 
-        })
-    } else {
+        }, (error) => {
+            if (error.code === error.PERMISSION_DENIED) {
+                console.log(userGeoData.city);
+                fetch(`/weather?address=${userGeoData.city}`)
+                    .then((res) => {
+                        if (!res.ok) {
+                            throw new Error('no geo location');
+                        }
+                        return res.json();
+                    })
+                    .then((data) => {
+                        callback(data);
+                    })
+                    .catch((error) => {
+                        console.error('error fetching geo weather');
+                    });
+            }
+        });
+    } else if (userInput.value) {
         fetch(location)
             .then((response) => {
                 if (!response.ok) {
@@ -164,11 +182,8 @@ const getWeatherData = (city, callback) => {
 
 // use GPS to fetch user location on load
 window.addEventListener('load', () => {
-    if (navigator.geolocation) {
-        showWeather();
-    } else {
-        showWeather(userGeoData.city);
-    }
+    // console.log(userGeoData.city);
+    showWeather();
 })
 
 searchBtn.addEventListener('click', (e) => {
