@@ -2,6 +2,10 @@ let weatherApi = '/weather';
 const userInput = document.querySelector('.userInput');
 const searchBtn = document.querySelector('.search-btn');
 const homepage = document.querySelector('.weather');
+const fahrenheitCel = document.querySelector('.btn');
+
+let jsonData = undefined;
+let convert = true;
 
 const userCity = userGeoData.city;
 const userCountry = userGeoData.country;
@@ -86,23 +90,34 @@ const skyCondition = (data) => {
     }
 }
 
+//conversion Celsius-Fahrenheit
+const converter = (data) => {
+    if (convert === false) {
+        document.querySelector(".temp").innerHTML = data.current.temp_f + '&deg';
+        document.querySelector(".wind").innerHTML = data.current.wind_mph + ' mph';
+        convert = true;
+    } else if (convert === true) {
+        document.querySelector(".temp").innerHTML = data.current.temp_c + '&deg';
+        document.querySelector(".wind").innerHTML = data.current.wind_kph + ' km/h';
+        convert = false;
+    }
+}
 
 // render
 const render = (data) => {
     document.querySelector(".city").innerHTML = data.location.name;
-    document.querySelector(".temp").innerHTML = data.current.temp_f + '&deg';
     document.querySelector(".humidity").innerHTML = data.current.humidity + '%';
-    document.querySelector(".wind").innerHTML = data.current.wind_kph + ' km/h';
     document.querySelector(".willrain").innerHTML = data.current.chance_of_rain + '% change of rain';
+    document.querySelector(".temp").innerHTML = data.current.temp_f + '&deg';
+    document.querySelector(".wind").innerHTML = data.current.wind_mph + ' mph';
+
 
     // output weather conditions
     if (data.current.condition.text.includes('Clear') || ((data.current.condition.text.includes('Cloudy')))) {
         document.querySelector(".conditions").innerHTML = data.current.condition.text + ' skies';
     } else {
-        // fetch weather conditions
         document.querySelector('.conditions').innerHTML = data.current.condition.text;
     }
-
 }
 
 
@@ -110,13 +125,13 @@ const showWeather = (city) => {
     const homepage2 = document.getElementById('homepage2');
 
     getWeatherData(city, (data) => {
-        //console.log('Weather data received:', data);
+        jsonData = data;
 
         if ((data.location && data.location.name) || (userCountry && userCity)) {
             homepage2.style.display = 'none';
             homepage.classList.remove('weather');
         }
-
+        console.log(data);
         render(data);
         skyCondition(data);
         dayGradient(data);
@@ -125,6 +140,7 @@ const showWeather = (city) => {
 
 const getWeatherData = (city, callback) => {
     const location = weatherApi + '?address=' + city;
+
 
     if ((navigator.geolocation) && (userInput.value === '')) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -141,11 +157,28 @@ const getWeatherData = (city, callback) => {
                     callback(data);
                 })
                 .catch((error) => {
-                    console.error('error fetching geo weather');
+                    console.error('error fetching gps weather');
                 });
 
-        })
-    } else {
+        }, (error) => {
+            if (error.code === error.PERMISSION_DENIED) {
+                console.log(userGeoData.city);
+                fetch(`/weather?address=${userGeoData.city}`)
+                    .then((res) => {
+                        if (!res.ok) {
+                            throw new Error('no geo location');
+                        }
+                        return res.json();
+                    })
+                    .then((data) => {
+                        callback(data);
+                    })
+                    .catch((error) => {
+                        console.error('error fetching geo weather');
+                    });
+            }
+        });
+    } else if (userInput.value) {
         fetch(location)
             .then((response) => {
                 if (!response.ok) {
@@ -164,14 +197,14 @@ const getWeatherData = (city, callback) => {
 
 // use GPS to fetch user location on load
 window.addEventListener('load', () => {
-    if (navigator.geolocation) {
-        showWeather();
-    } else {
-        showWeather(userGeoData.city);
-    }
+    showWeather();
 })
 
 searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
     showWeather(userInput.value);
 });
+
+fahrenheitCel.addEventListener('click', () => {
+    converter(jsonData);
+})
