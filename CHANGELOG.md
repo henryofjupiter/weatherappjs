@@ -1,8 +1,22 @@
 # Changelog
 
-## NEW FEATURES
+## NEW RELEASE
 
-#### Auto-Location Detection Features
+#### Unit Converter Feature (OCT. 15, 26)
+
+- **Unit Converter**: Added a unit converter feature that lets users convert temperature units (for example, Celsius/
+  Fahrenheit) directly in the app.
+    - Integrates with the existing weather display and input flow so users can view or convert values in their preferred
+      unit.
+
+- **CSS: Input Field Adjustment**: Updated the CSS to adjust the main input field so it accommodates the unit converter
+  UI and improves layout and responsiveness.
+    - Includes spacing and width tweaks to prevent overlap and ensure the converter controls display cleanly on small
+      screens.
+
+_______________________________________
+
+#### Auto-Location Detection Features (OCT. 08, 26)
 
 - **Geolocation-Based Weather Fetching**: The app now automatically fetches weather data using the device's geolocation
   on page load, eliminating the need for manual city entry on initial load
